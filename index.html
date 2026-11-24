@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flow | فلو</title>
+<meta name="description" content="Flow – منصة إعلامية رقمية وأدوات مجانية لتبسيط الثقافة المالية للشباب.">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* ===== Brand tokens: استبدلها بألوان الهوية الأصلية ===== */
+:root{--ink:#35265B;--mint:#1FD1A5;--paper:#F6F4FA;--card:#fff;--text:#231a3d;--mute:#6b6385;--warn:#d9480f;--line:#e2dcf0;--r:14px}
+*{box-sizing:border-box;margin:0}
+body{font-family:Cairo,system-ui,sans-serif;background:var(--paper);color:var(--text);line-height:1.7}
+a{color:inherit}
+.w{max-width:1080px;margin-inline:auto;padding-inline:18px}
+header{background:var(--ink);color:#fff;position:sticky;top:0;z-index:5}
+header .w{display:flex;align-items:center;gap:14px;min-height:60px;flex-wrap:wrap}
+.logo{font-weight:800;font-size:1.4rem;text-decoration:none;margin-inline-end:auto}
+.logo b{color:var(--mint)}
+nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.92rem}
+nav a{text-decoration:none;opacity:.9}nav a:hover{opacity:1;color:var(--mint)}
+button,.btn{font:inherit;cursor:pointer;border:0;border-radius:10px;padding:8px 16px;background:var(--mint);color:var(--ink);font-weight:600;text-decoration:none;display:inline-block}
+button.alt{background:transparent;color:inherit;border:1px solid currentColor}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--mint);outline-offset:2px}
+.hero{background:var(--ink);color:#fff;padding:56px 0 64px}
+.hero h1{font-size:clamp(2.2rem,7vw,4.2rem);line-height:1.15;font-weight:800;max-width:14ch}
+.hero p{max-width:52ch;margin:16px 0 24px;opacity:.85}
+.hero .tag{color:var(--mint);font-weight:600}
+section{padding:44px 0}
+h2{font-size:1.7rem;margin-bottom:6px}
+.sub{color:var(--mute);margin-bottom:20px}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:18px}
+.card h3{font-size:1.05rem;margin-bottom:4px}
+.card p{color:var(--mute);font-size:.92rem}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.tabs button{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.tabs button[aria-selected=true]{background:var(--ink);color:#fff}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px}
+label{display:block;font-size:.88rem;font-weight:600;margin:10px 0 4px}
+input,select,textarea{font:inherit;width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--text)}
+.row{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.out{margin-top:16px;padding:14px;border-radius:10px;background:var(--paper);border-inline-start:5px solid var(--mint)}
+.out strong{font-size:1.15rem}
+.warn{border-color:var(--warn);color:var(--warn)}
+.note{font-size:.8rem;color:var(--mute);margin-top:10px}
+.bar{height:12px;background:var(--line);border-radius:9px;overflow:hidden;margin:6px 0}
+.bar i{display:block;height:100%;background:var(--mint)}
+.days{display:grid;grid-template-columns:repeat(auto-fill,minmax(64px,1fr));gap:8px;margin-top:12px}
+.days button{background:var(--paper);color:var(--text);border:1px solid var(--line);padding:6px 2px;font-size:.8rem}
+.days button.on{background:var(--mint);color:var(--ink)}
+ul.items{list-style:none;padding:0;margin-top:10px}
+ul.items li{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--line)}
+.opt{display:block;width:100%;text-align:start;margin:6px 0;background:var(--paper);color:var(--text);border:1px solid var(--line)}
+.opt.ok{background:#d3f9ee;border-color:var(--mint)}.opt.no{background:#ffe3d6;border-color:var(--warn)}
+.cur{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:.9rem}.cur select{width:auto}
+footer{background:var(--ink);color:#d8d0ee;padding:30px 0;font-size:.88rem}
+footer .w{display:flex;gap:18px;flex-wrap:wrap;justify-content:space-between}
+.ok-msg{color:#0b7a5e;font-weight:600;margin-top:8px}
+@media print{header,.hero,footer,.tabs,button{display:none}}
+@media(prefers-reduced-motion:no-preference){.hero h1{animation:in .7s ease both}@keyframes in{from{opacity:0;transform:translateY(14px)}}}
+</style>
+</head>
+<body>
+<header><div class="w">
+<a class="logo" href="#top">Flow <b>|</b> فلو</a>
+<nav id="nav"></nav>
+<button class="alt" id="lang" aria-label="Language"></button>
+</div></header>
+
+<main id="top">
+<div class="hero"><div class="w">
+<p class="tag" data-i="slogan"></p>
+<h1 data-i="h1"></h1>
+<p data-i="lead"></p>
+<a class="btn" href="#tools" data-i="cta"></a>
+</div></div>
+
+<section id="tools"><div class="w">
+<h2 data-i="toolsT"></h2><p class="sub" data-i="toolsS"></p>
+<div class="cur"><span data-i="cur"></span>
+<select id="cur"><option>EGP</option><option>USD</option><option>SAR</option><option>EUR</option><option>AED</option></select></div>
+<div class="tabs" id="tabs" role="tablist"></div>
+<div class="panel" id="panel" aria-live="polite"></div>
+</div></section>
+
+<section id="learn"><div class="w">
+<h2 data-i="learnT"></h2><p class="sub" data-i="learnS"></p>
+<div class="grid" id="topics"></div>
+</div></section>
+
+<section id="media"><div class="w">
+<h2 data-i="mediaT"></h2><p class="sub" data-i="mediaS"></p>
+<div class="grid" id="mediaG"></div>
+</div></section>
+
+<section id="stories"><div class="w">
+<h2 data-i="storyT"></h2><p class="sub" data-i="storyS"></p>
+<div class="grid"><div class="card"><h3 data-i="storyC"></h3><p data-i="storyP"></p></div></div>
+</div></section>
+
+<section id="contact"><div class="w">
+<div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+<form class="panel" id="nl"><h2 data-i="nlT"></h2><p class="sub" data-i="nlS"></p>
+<label for="nle" data-i="email"></label><input id="nle" type="email" required>
+<label style="display:flex;gap:8px;font-weight:400"><input type="checkbox" required style="width:auto"><span data-i="consent"></span></label>
+<p style="margin-top:10px"><button data-i="sub"></button></p><p class="ok-msg" id="nlm"></p></form>
+<form class="panel" id="ct"><h2 data-i="ctT"></h2>
+<label for="cn" data-i="name"></label><input id="cn" required>
+<label for="ce" data-i="email"></label><input id="ce" type="email" required>
+<label for="cm" data-i="msg"></label><textarea id="cm" rows="3" required></textarea>
+<p style="margin-top:10px"><button data-i="send"></button> <a class="btn alt" id="wa" style="background:transparent;border:1px solid var(--ink)">WhatsApp</a></p><p class="ok-msg" id="ctm"></p></form>
+</div></div></section>
+</main>
+
+<footer><div class="w">
+<span>© Flow | فلو</span>
+<span data-i="disc"></span>
+<span><a href="#" data-i="priv"></a> · <a href="#" data-i="terms"></a> · <a href="#" data-i="faq"></a></span>
+</div></footer>
+
+<script>
+/* ===== Config: قابلة للتعديل (لوحة الإدارة لاحقًا) ===== */
+const CONFIG={email:"hello@example.com",whatsapp:""}; // ضع رقم WhatsApp الرسمي بصيغة دولية بدون +
+const T={
+ar:{slogan:"اللي معاه فلو، معاه فلوس",h1:"فلوسك، بشكل أبسط.",lead:"أدوات مجانية ومحتوى قريب منك يحوّل المعلومة المالية لقرار يومي: ميزانية، ادخار، أول مرتب، وحذر من النصب. بدون تسجيل.",cta:"جرّب الأدوات",
+toolsT:"أدوات مالية تفاعلية",toolsS:"كل الحسابات تتم على جهازك، ولا يُرسل أي رقم تكتبه إلى أي خادم.",cur:"العملة:",
+learnT:"تعلّم",learnS:"محاور المحتوى التعليمي (مثال توضيحي، المحتوى الفعلي يُدار من لوحة التحكم).",
+mediaT:"فيديو وبودكاست",mediaS:"مكان الفيديوهات وReels والحلقات (روابط خارجية أو ملفات مستضافة).",
+storyT:"قصص نجاح",storyS:"قصص موثقة بموافقة أصحابها.",storyC:"قريبًا",storyP:"ستظهر هنا قصص النجاح بعد توثيقها واعتمادها.",
+nlT:"النشرة البريدية",nlS:"اشتراك اختياري، وتقدر تلغيه في أي وقت.",email:"البريد الإلكتروني",consent:"أوافق على استلام النشرة على بريدي.",sub:"اشترك",nlOk:"تم الاشتراك. هنرسل لك رسالة تأكيد.",
+ctT:"تواصل معنا",name:"الاسم",msg:"الرسالة",send:"أرسل",ctOk:"وصلتنا رسالتك، وهنرد عليك قريبًا.",
+disc:"محتوى توعوي عام وليس توصية استثمارية أو تمويلية.",priv:"الخصوصية",terms:"الشروط",faq:"الأسئلة الشائعة",
+nav:[["tools","الأدوات"],["learn","تعلّم"],["media","الوسائط"],["stories","قصص نجاح"],["contact","تواصل"]],
+tabs:["الميزانية","تحدي 30 يوم","التقسيط","الأهداف","اختبار","لعبة القرارات"],
+topics:[["الميزانية والادخار","نظّم مصروفك وابنِ عادة الادخار."],["التقسيط والتكلفة","اعرف التكلفة الإجمالية قبل ما توقّع."],["أول مرتب","قرارات أول دخل بدون ندم."],["احذر النصب","اكشف الاستثمار الوهمي والربح السريع."],["العمل الحر","أدر تدفقك النقدي بذكاء."],["التضخم","ليه فلوسك بتشتري أقل؟"]],
+media:["فيديوهات","Reels","بودكاست","برامج ومقابلات"],
+inc:"الدخل الشهري",item:"البند",cat:"التصنيف",amt:"القيمة",add:"أضف",tot:"إجمالي المصروفات",left:"المتبقي",pct:"نسبة المصروفات من الدخل",over:"مصروفاتك أعلى من دخلك.",bad:"أدخل قيمًا صحيحة.",reset:"إعادة ضبط",print:"طباعة",empty:"لا توجد بنود بعد.",cats:["سكن","أكل","مواصلات","ترفيه","أخرى"],
+base:"مبلغ اليوم الأول",step:"زيادة يومية",day:"يوم",saved:"المدّخر",target:"الهدف",restart:"إعادة البدء ومسح البيانات",
+price:"السعر",down:"المقدم",months:"المدة (شهور)",feeT:"نوع التكلفة",f1:"مبلغ ثابت",f2:"نسبة ثابتة من الممول",f3:"معدل سنوي متناقص",feeV:"قيمة التكلفة",inst:"القسط الشهري التقديري",paid:"إجمالي المدفوع",cost:"تكلفة التمويل",diff:"الفرق عن السعر النقدي",
+iNote:"تقديري فقط. راجع العقد والرسوم والغرامات وتواريخ الاستحقاق قبل التوقيع.",
+goal:"قيمة الهدف",have:"المدّخر حاليًا",per:"الادخار الشهري",inM:"المدة المطلوبة (اختياري)",need:"الادخار الشهري اللازم",eta:"المدة التقدير",mo:"شهر",gNote:"بدون أي عائد افتراضي.",
+score:"نتيجتك",again:"أعد المحاولة",next:"التالي",
+q:[["لو مصروفك أعلى من دخلك باستمرار، أول خطوة؟",["أراجع البنود وأقلل غير الضروري","أقترض لتغطية الفرق","أتجاهل الأمر"],0,"مراجعة البنود هي أساس التوازن."],["عرض ربح مضمون 20% شهريًا يعني غالبًا؟",["فرصة ممتازة","احتمال نصب","استثمار آمن"],1,"الربح المضمون العالي علامة تحذير."],["قبل التقسيط، أهم رقم؟",["قيمة القسط فقط","التكلفة الإجمالية","لون المنتج"],1,"التكلفة الإجمالية تكشف الثمن الحقيقي."]],
+g:["جالك أول مرتب 8000. إيه قرارك؟",[["أنفق نصفه فورًا","هتستمتع، لكن هتدخل الشهر الجاي على صفر."],["أوزعه: ضروريات وادخار وترفيه","توزيع متوازن يبني عادة ثابتة."],["أقرضه لصديق يعدك بأرباح","خطر ضياع المبلغ، وراجع الجهة قبل أي قرار."]]]},
+en:{slogan:"Whoever has Flow, has money",h1:"Your money, made simple.",lead:"Free tools and relatable content that turn financial info into daily decisions: budgeting, saving, your first salary, and spotting scams. No sign-up.",cta:"Try the tools",
+toolsT:"Interactive money tools",toolsS:"All calculations run on your device. Nothing you type is sent to a server.",cur:"Currency:",
+learnT:"Learn",learnS:"Editorial topics (illustrative; real content is managed from the CMS).",
+mediaT:"Video & podcast",mediaS:"Home for videos, Reels and episodes (external links or self-hosted files).",
+storyT:"Success stories",storyS:"Documented stories shared with consent.",storyC:"Coming soon",storyP:"Verified success stories will appear here.",
+nlT:"Newsletter",nlS:"Optional. Unsubscribe anytime.",email:"Email",consent:"I agree to receive the newsletter.",sub:"Subscribe",nlOk:"Subscribed. A confirmation email is on its way.",
+ctT:"Contact us",name:"Name",msg:"Message",send:"Send",ctOk:"Message received. We'll reply soon.",
+disc:"General educational content, not investment or financing advice.",priv:"Privacy",terms:"Terms",faq:"FAQ",
+nav:[["tools","Tools"],["learn","Learn"],["media","Media"],["stories","Stories"],["contact","Contact"]],
+tabs:["Budget","30-day challenge","Installments","Goals","Quiz","Decision game"],
+topics:[["Budget & saving","Organize spending and build a saving habit."],["Installments & cost","Know the total cost before you sign."],["First salary","Decide on your first income without regret."],["Beware scams","Spot fake investments and get-rich-quick."],["Freelancing","Manage your cash flow smartly."],["Inflation","Why does your money buy less?"]],
+media:["Videos","Reels","Podcast","Shows & interviews"],
+inc:"Monthly income",item:"Item",cat:"Category",amt:"Amount",add:"Add",tot:"Total expenses",left:"Remaining",pct:"Expenses as share of income",over:"Your expenses exceed your income.",bad:"Enter valid values.",reset:"Reset",print:"Print",empty:"No items yet.",cats:["Housing","Food","Transport","Fun","Other"],
+base:"Day-1 amount",step:"Daily increase",day:"Day",saved:"Saved",target:"Target",restart:"Restart and clear data",
+price:"Price",down:"Down payment",months:"Term (months)",feeT:"Cost type",f1:"Fixed amount",f2:"Flat % of financed",f3:"Declining annual rate",feeV:"Cost value",inst:"Estimated monthly installment",paid:"Total paid",cost:"Financing cost",diff:"Difference vs cash price",
+iNote:"Estimate only. Check the contract, fees, penalties and due dates before signing.",
+goal:"Goal amount",have:"Saved so far",per:"Monthly saving",inM:"Target months (optional)",need:"Monthly saving needed",eta:"Estimated time",mo:"months",gNote:"No assumed returns.",
+score:"Your score",again:"Try again",next:"Next",
+q:[["Your spending keeps exceeding income. First step?",["Review items and cut non-essentials","Borrow to cover the gap","Ignore it"],0,"Reviewing items is the base of balance."],["A guaranteed 20% monthly profit offer is most likely?",["Great opportunity","Probable scam","Safe investment"],1,"High guaranteed returns are a red flag."],["Before installments, the key number is?",["Installment only","Total cost","Product color"],1,"Total cost shows the real price."]],
+g:["You got your first salary: 8000. What do you do?",[["Spend half right away","Fun now, but next month starts at zero."],["Split: essentials, saving, fun","A balanced split builds a steady habit."],["Lend it to a friend promising profits","You may lose it; verify the party first."]]]}};
+let L=localStorage.getItem("fl")||"ar",tab=0,items=[],qi=0,qs=0;
+const $=s=>document.querySelector(s),t=k=>T[L][k];
+const S=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},G=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}};
+const cur=()=>$("#cur").value,fmt=n=>new Intl.NumberFormat(L==="ar"?"ar-EG":"en",{style:"currency",currency:cur(),maximumFractionDigits:2}).format(n);
+const N=id=>parseFloat($("#"+id).value);
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function render(){
+document.documentElement.lang=L;document.documentElement.dir=L==="ar"?"rtl":"ltr";
+document.querySelectorAll("[data-i]").forEach(e=>e.textContent=t(e.dataset.i));
+$("#lang").textContent=L==="ar"?"English":"عربي";
+$("#nav").innerHTML=t("nav").map(n=>`<a href="#${n[0]}">${n[1]}</a>`).join("");
+$("#tabs").innerHTML=t("tabs").map((x,i)=>`<button role="tab" aria-selected="${i===tab}" data-t="${i}">${x}</button>`).join("");
+$("#topics").innerHTML=t("topics").map(x=>`<div class="card"><h3>${x[0]}</h3><p>${x[1]}</p></div>`).join("");
+$("#mediaG").innerHTML=t("media").map(x=>`<div class="card"><h3>${x}</h3><p>—</p></div>`).join("");
+$("#wa").style.display=CONFIG.whatsapp?"":"none";$("#wa").href="https://wa.me/"+CONFIG.whatsapp;
+panel();}
+function panel(){const p=$("#panel");[budget,challenge,inst,goals,quiz,game][tab](p);}
+const fld=(id,l,v="",ty="number")=>`<div><label for="${id}">${l}</label><input id="${id}" type="${ty}" min="0" step="any" value="${v}"></div>`;
+function budget(p){
+const inc=G("b_inc",""),it=G("b_it",[]);items=it;
+const tot=it.reduce((a,b)=>a+b.v,0),i=parseFloat(inc)||0;
+const by={};it.forEach(x=>by[x.c]=(by[x.c]||0)+x.v);
+p.innerHTML=`<div class="row">${fld("inc",t("inc"),inc)}</div>
+<div class="row">${fld("bn",t("item"),"","text")}<div><label for="bc">${t("cat")}</label><select id="bc">${t("cats").map(c=>`<option>${c}</option>`).join("")}</select></div>${fld("bv",t("amt"))}</div>
+<p style="margin-top:10px"><button id="badd">${t("add")}</button> <button class="alt" id="brs" style="color:var(--ink)">${t("reset")}</button> <button class="alt" style="color:var(--ink)" onclick="print()">${t("print")}</button></p>
+<ul class="items">${it.length?it.map((x,k)=>`<li><span>${esc(x.n)} · ${esc(x.c)}</span><span>${fmt(x.v)} <button class="alt" style="color:var(--warn);padding:0 8px" data-d="${k}">×</button></span></li>`).join(""):`<li>${t("empty")}</li>`}</ul>
+<div class="out ${tot>i&&i>0?"warn":""}"><div>${t("tot")}: <strong>${fmt(tot)}</strong></div><div>${t("left")}: <strong>${fmt(i-tot)}</strong></div>
+<div>${t("pct")}: <strong>${i>0?Math.round(tot/i*100):0}%</strong></div>${tot>i&&i>0?`<div>${t("over")}</div>`:""}
+${Object.entries(by).map(([c,v])=>`<div style="font-size:.85rem">${c}: ${fmt(v)}<div class="bar"><i style="width:${tot?v/tot*100:0}%"></i></div></div>`).join("")}</div>`;
+$("#inc").oninput=e=>{S("b_inc",e.target.value);budget(p);$("#inc").focus()};
+$("#badd").onclick=()=>{const v=N("bv"),n=$("#bn").value.trim();if(!n||!(v>=0)||isNaN(v))return alert(t("bad"));it.push({n,c:$("#bc").value,v});S("b_it",it);budget(p)};
+$("#brs").onclick=()=>{S("b_it",[]);S("b_inc","");budget(p)};
+p.querySelectorAll("[data-d]").forEach(b=>b.onclick=()=>{it.splice(b.dataset.d,1);S("b_it",it);budget(p)});}
+function challenge(p){
+const d=G("c_d",{base:10,step:5,done:[]});
+const amt=n=>d.base+(n-1)*d.step;let tg=0,got=0;for(let n=1;n<=30;n++){tg+=amt(n);if(d.done.includes(n))got+=amt(n)}
+p.innerHTML=`<div class="row">${fld("cb",t("base"),d.base)}${fld("cs",t("step"),d.step)}</div>
+<div class="days">${Array.from({length:30},(_,k)=>`<button data-n="${k+1}" class="${d.done.includes(k+1)?"on":""}" aria-pressed="${d.done.includes(k+1)}">${t("day")} ${k+1}<br>${amt(k+1)}</button>`).join("")}</div>
+<div class="out">${t("saved")}: <strong>${fmt(got)}</strong> / ${t("target")}: ${fmt(tg)}<div class="bar"><i style="width:${tg?got/tg*100:0}%"></i></div></div>
+<p style="margin-top:10px"><button class="alt" id="cr" style="color:var(--ink)">${t("restart")}</button></p>`;
+const up=()=>{S("c_d",d);challenge(p)};
+$("#cb").onchange=e=>{d.base=Math.max(0,+e.target.value||0);up()};$("#cs").onchange=e=>{d.step=Math.max(0,+e.target.value||0);up()};
+p.querySelectorAll("[data-n]").forEach(b=>b.onclick=()=>{const n=+b.dataset.n,i=d.done.indexOf(n);i<0?d.done.push(n):d.done.splice(i,1);up()});
+$("#cr").onclick=()=>{S("c_d",{base:d.base,step:d.step,done:[]});challenge(p)};}
+function inst(p){
+p.innerHTML=`<div class="row">${fld("ip",t("price"))}${fld("id",t("down"),0)}${fld("im",t("months"),12)}</div>
+<div class="row"><div><label for="ik">${t("feeT")}</label><select id="ik"><option value="1">${t("f1")}</option><option value="2">${t("f2")} (%)</option><option value="3">${t("f3")} (%)</option></select></div>${fld("iv",t("feeV"),0)}</div>
+<div class="out" id="io">—</div><p class="note">${t("iNote")}</p>`;
+const calc=()=>{const P=N("ip"),D=N("id")||0,m=N("im"),v=N("iv")||0,k=$("#ik").value,o=$("#io");
+if(!(P>0)||!(m>0)||D<0||D>P||v<0){o.textContent=t("bad");return}
+const F=P-D;let pay,tot;
+if(k==="1"){tot=F+v;pay=tot/m}else if(k==="2"){tot=F*(1+v/100);pay=tot/m}
+else{const r=v/1200;pay=r?F*r/(1-Math.pow(1+r,-m)):F/m;tot=pay*m}
+const cost=tot-F;o.innerHTML=`${t("inst")}: <strong>${fmt(pay)}</strong><br>${t("paid")}: <strong>${fmt(tot+D)}</strong><br>${t("cost")}: <strong>${fmt(cost)}</strong><br>${t("diff")}: <strong>${fmt(tot+D-P)}</strong>`};
+p.querySelectorAll("input,select").forEach(e=>e.oninput=calc);calc();}
+function goals(p){
+p.innerHTML=`<div class="row">${fld("gg",t("goal"))}${fld("gh",t("have"),0)}${fld("gp",t("per"))}${fld("gm",t("inM"))}</div><div class="out" id="go">—</div><p class="note">${t("gNote")}</p>`;
+const calc=()=>{const g=N("gg"),h=N("gh")||0,s=N("gp"),m=N("gm"),o=$("#go");
+if(!(g>0)||h<0||h>g&&0){o.textContent=t("bad");return}
+const rem=Math.max(0,g-h);let h2=`<div class="bar"><i style="width:${Math.min(100,h/g*100)}%"></i></div>`;
+if(m>0)h2=`${t("need")}: <strong>${fmt(rem/m)}</strong>`+h2;else if(s>0)h2=`${t("eta")}: <strong>${Math.ceil(rem/s)} ${t("mo")}</strong>`+h2;else{o.textContent=t("bad");return}
+o.innerHTML=h2};
+p.querySelectorAll("input").forEach(e=>e.oninput=calc);calc();}
+function quiz(p){const Q=t("q");
+if(qi>=Q.length){p.innerHTML=`<div class="out">${t("score")}: <strong>${qs}/${Q.length}</strong></div><p style="margin-top:10px"><button id="qa">${t("again")}</button></p>`;$("#qa").onclick=()=>{qi=0;qs=0;quiz(p)};return}
+const q=Q[qi];p.innerHTML=`<h3>${q[0]}</h3>${q[1].map((o,i)=>`<button class="opt" data-o="${i}">${o}</button>`).join("")}<div id="qx"></div>`;
+p.querySelectorAll("[data-o]").forEach(b=>b.onclick=()=>{const i=+b.dataset.o;p.querySelectorAll("[data-o]").forEach((x,k)=>{x.disabled=true;x.classList.add(k===q[2]?"ok":k===i?"no":"x")});if(i===q[2])qs++;
+$("#qx").innerHTML=`<p class="note">${q[3]}</p><p><button id="qn">${t("next")}</button></p>`;$("#qn").onclick=()=>{qi++;quiz(p)}})}
+function game(p){const g=t("g");
+p.innerHTML=`<h3>${g[0]}</h3>${g[1].map((o,i)=>`<button class="opt" data-g="${i}">${o[0]}</button>`).join("")}<div id="gx"></div>`;
+p.querySelectorAll("[data-g]").forEach(b=>b.onclick=()=>{$("#gx").innerHTML=`<div class="out">${g[1][b.dataset.g][1]}</div>`})}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-t]");if(b){tab=+b.dataset.t;render()}});
+$("#lang").onclick=()=>{L=L==="ar"?"en":"ar";try{localStorage.setItem("fl",L)}catch(e){}qi=0;qs=0;render()};
+$("#cur").onchange=panel;
+$("#nl").onsubmit=e=>{e.preventDefault();$("#nlm").textContent=t("nlOk");e.target.reset()};
+$("#ct").onsubmit=e=>{e.preventDefault();$("#ctm").textContent=t("ctOk");e.target.reset()};
+render();
+</script>
+</body>
+</html>
